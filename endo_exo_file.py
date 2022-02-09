@@ -95,32 +95,32 @@ print("Total number of exogenous-induced SBS signatures:", Exogenous_count, "\n"
 
 #We will also calculate for each patient how many of their total SBS mutations were endogenous vs exogenous
 #Let's first make 2 new columns for us to add our new data to:
-#df["Total endogenous SBS mutations"] = 0
-#df["Total exogenous SBS mutations"] = 0
+df["Total endogenous SBS mutations"] = 0
+df["Total exogenous SBS mutations"] = 0
 
-#for row_index,row in df.iterrows():
-   # if row_index == "Source" or row_index == "Proposed Aetiology":
-       # continue
-        #for x in range(65):
-            #if df.loc["Source"]["SBS1":"SBS60"][x] == "Endogenous":
-               # df.loc[row_index,"Total endogenous SBS mutations"] += row["SBS1":"SBS60"][x]
-            #if df.loc["Source"]["SBS1":"SBS60"][x] == "Exogenous":
-               # df.loc[row_index,"Total exogenous SBS mutations"] += row["SBS1":"SBS60"][x]
+for row_index,row in df.iterrows():
+    if row_index == "Source" or row_index == "Proposed Aetiology":
+        continue
+        for x in range(65):
+            if df.loc["Source"]["SBS1":"SBS60"][x] == "Endogenous":
+                df.loc[row_index,"Total endogenous SBS mutations"] += row["SBS1":"SBS60"][x]
+            if df.loc["Source"]["SBS1":"SBS60"][x] == "Exogenous":
+                df.loc[row_index,"Total exogenous SBS mutations"] += row["SBS1":"SBS60"][x]
 
-#Adding columns for total endogenous/exogenous SBS mutations and to calculate exogenous SBS proportion
-#df["Total endogenous or exogenous SBS mutations"] = 0
-#df["Exogenous SBS proportion"] = 0.0
+Adding columns for total endogenous/exogenous SBS mutations and to calculate exogenous SBS proportion
+df["Total endogenous or exogenous SBS mutations"] = 0
+df["Exogenous SBS proportion"] = 0.0
 
-#for row_index,row in df.iterrows():
-    #if row_index == "Source" or row_index == "Proposed Aetiology":
-        #continue
-   # if df.loc[row_index,"Total endogenous or exogenous SBS mutations"] == 0:
-      #  df.loc[row_index,"Exogenous SBS proportion"] = "N/A"
-        #continue
-   # df.#loc[row_index,"Total endogenous or exogenous SBS mutations"] = row["Total endogenous SBS mutations"] + row["Total exogenous SBS mutations"]
-   # df.loc[row_index,"Exogenous SBS proportion"] = (row["Total exogenous SBS mutations"])/(df.loc[row_index,"Total endogenous or exogenous SBS mutations"])
+for row_index,row in df.iterrows():
+    if row_index == "Source" or row_index == "Proposed Aetiology":
+        continue
+    if df.loc[row_index,"Total endogenous or exogenous SBS mutations"] == 0:
+        df.loc[row_index,"Exogenous SBS proportion"] = "N/A"
+        continue
+    df.loc[row_index,"Total endogenous or exogenous SBS mutations"] = row["Total endogenous SBS mutations"] + row["Total exogenous SBS mutations"]
+    df.loc[row_index,"Exogenous SBS proportion"] = (row["Total exogenous SBS mutations"])/(df.loc[row_index,"Total endogenous or exogenous SBS mutations"])
 
-#df["Cancer Types"].unique()
+df["Cancer Types"].unique()
 #while loop finds the total endogenous and exogenous mutation amounts per sample 
 loc = 0
 c = 4
@@ -129,12 +129,6 @@ totalEx = 0
 totalun = 0
 count = 0
 r=2
-
-while r < len(df):
-    continue
-
-        
-
 
 root = '/Users/rabiram470/Desktop/'
 df.to_csv(root + 'endo_exo.csv')
